@@ -137,10 +137,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        id: prepwork
-        run: |
-          echo "JOB 2 - PrepWork"
-          
       - name: Updating into AWX
         if: ${{ env.condition_variables == 'prep_work' }}
         run: |
