@@ -257,6 +257,7 @@ jobs:
         run: |
           echo 'hello'
   Enable_APP_Services:
+    needs: [GET_DETAILS_FROM_AZURE, Post_APP_Script_out, GET_APP_SERVER_DETAILS_AZURE]
     runs-on: ubuntu-latest
     environment: prod 
     steps:
