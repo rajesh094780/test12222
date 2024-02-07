@@ -144,12 +144,12 @@ jobs:
         continue-on-error: true
 
       - name: Updating into AWX
-        if: ${{ env.condition_variables == 'prep_work' && steps.prepwork.outcome == 'failure' }}
+        if: ${{  steps.prepwork.outcome == 'failure' }}
         run: |
           echo 'Uppdating the status int AWX'
 
       - name: Updating into AWX -success
-        if: ${{ env.condition_variables == 'prep_work' && steps.prepwork.outcome == 'success' }}
+        if: ${{ steps.prepwork.outcome == 'success' }}
         run: |
           echo 'Uppdating the status int AWX success'
       - name: Failed Remaining Step
