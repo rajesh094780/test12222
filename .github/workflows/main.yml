@@ -272,7 +272,6 @@ jobs:
         run: |
           echo 'hello'
   Enable_APP_Services:
-    runs-on: ${{ needs.GET_DETAILS_FROM_AZURE.outputs.runner }}
     runs-on: ubuntu-latest
     environment: prod 
     steps:
