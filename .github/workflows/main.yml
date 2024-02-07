@@ -300,19 +300,10 @@ jobs:
           echo 'hello'
   UPDATE_AWX:
     needs: [GET_DETAILS_FROM_AZURE, ENABLE_MONITOR,Send_Report]
-    runs-on: ${{ needs.GET_DETAILS_FROM_AZURE.outputs.runner }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: test
         run: |
           echo 'hello'
-      - uses: actions/checkout@v3
       
-      - name: Update status AWX          
-        run: |
-          cd ${{ env.pyInventoryPath }}          
-          python3 -u uppdate_awx.py 
-        env:
-          endpoints: "${{ env.endPointUrls }}"
-          msg: "Restore has been completed"
-          RbaStatusCode: 1
