@@ -138,8 +138,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: test
+        if: ${{ env.condition_variables == 'prep_work' }}
         run: |
-          exit 1
+          echo 'Uppdating the status int AWX'
+  ONLY_PREP_WORK:
+    needs: [GET_DETAILS_FROM_AZURE, GET_APP_SERVER_DETAILS_AZURE]
+    if: ${{ github.event.inputs.condition_variables == 'prep_work'}}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: test
+        if: ${{ env.condition_variables == 'prep_work' }}
+        shell: pwsh
+        run: |
+          throw "Exiting from pipeline"
+
 
 
   DISABLE_MONITOR_AND_STOP_APP:
