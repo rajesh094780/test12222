@@ -137,21 +137,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        if: ${{ env.condition_variables == 'prep_work' }}
         id: prepwork
         run: |
-          python test.py
-        continue-on-error: true
-
+          echo "JOB 2 - PrepWork"
+          
       - name: Updating into AWX
-        if: ${{  steps.prepwork.outcome == 'failure' }}
+        if: ${{ env.condition_variables == 'prep_work' }}
         run: |
           echo 'Uppdating the status int AWX'
-
-      - name: Updating into AWX -success
-        if: ${{ steps.prepwork.outcome == 'success' }}
-        run: |
-          echo 'Uppdating the status int AWX success'
       - name: Failed Remaining Step
         if: ${{ env.condition_variables == 'prep_work' }}
         shell: pwsh
@@ -161,7 +154,7 @@ jobs:
   DISABLE_MONITOR_AND_STOP_APP:
     if: ${{ github.event.inputs.condition_variables == 'disable' || github.event.inputs.condition_variables == 'go_refresh' || github.event.inputs.condition_variables == 'refresh' }}
     runs-on: ubuntu-latest
-    needs: [GET_DETAILS_FROM_AZURE, GET_APP_SERVER_DETAILS_AZURE]
+    needs: [Validate_VM_Authentication, GET_DETAILS_FROM_AZURE, GET_APP_SERVER_DETAILS_AZURE]
     steps:
       - uses: actions/checkout@v3
       - name: test
