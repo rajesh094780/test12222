@@ -19,11 +19,12 @@ jobs:
         run: |
           echo 'hello'
   STOP_APP_Services:
-    if: ${{ github.event.inputs.condition_variables == 'Stop'}}
+    #if: ${{ github.event.inputs.condition_variables == 'Stop'}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: test
+        if: ${{ env.condition_variables == 'refresh'}}
         run: |
           echo 'hello'
   
