@@ -156,6 +156,7 @@ jobs:
 
 
   DISABLE_MONITOR_AND_STOP_APP:
+    if: ${{ github.event.inputs.condition_variables == 'disable'}}
     runs-on: ubuntu-latest
     needs: [Validate_VM_Authentication, GET_DETAILS_FROM_AZURE, GET_APP_SERVER_DETAILS_AZURE]
     steps:
