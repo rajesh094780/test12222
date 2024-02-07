@@ -10,7 +10,7 @@ env:
 
 jobs:
   STOP_APP_Services:
-    if: ${{ env.condition_variable == 'Stop'}}
+    if: ${{ github.event.inputs.condition_variables == 'Stop'}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,7 +20,7 @@ jobs:
   
   DISABLE_MONITOR_AND_STOP_APP:
     needs: [STOP_APP_Services]
-    if: ${{ env.condition_variable == 'Disable'}}
+    if: ${{ github.event.inputs.condition_variables == 'Disable'}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3  
