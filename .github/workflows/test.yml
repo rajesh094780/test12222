@@ -9,8 +9,13 @@ env:
   condition_variable: "${{ github.event.inputs.condition_variables }}"
 
 jobs:
-  Test_EUW_Runner:
+  STOP_APP_Services:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-    
+  
+  DISABLE_MONITOR_AND_STOP_APP:
+    needs: [STOP_APP_Services]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3  
