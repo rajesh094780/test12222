@@ -9,6 +9,15 @@ env:
   condition_variable: "${{ github.event.inputs.condition_variables }}"
 
 jobs:
+
+  PREP_WORK:
+    if: ${{ github.event.inputs.condition_variables == 'prep_work' && github.event.inputs.condition_variables == 'refresh' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: test
+        run: |
+          echo 'hello'
   STOP_APP_Services:
     if: ${{ github.event.inputs.condition_variables == 'Stop'}}
     runs-on: ubuntu-latest
