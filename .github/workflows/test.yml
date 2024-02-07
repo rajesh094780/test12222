@@ -14,6 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: test
+        run: |
+          echo 'hello'
   
   DISABLE_MONITOR_AND_STOP_APP:
     needs: [STOP_APP_Services]
