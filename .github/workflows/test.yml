@@ -1,0 +1,16 @@
+name: Test SPN in Self-Hosted runner
+on:
+  workflow_dispatch:
+    inputs:
+      condition_variables:
+        description: "CUSTOMER CODE"
+
+env:
+  condition_variable: "${{ github.event.inputs.condition_variables }}"
+
+jobs:
+  Test_EUW_Runner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+    
