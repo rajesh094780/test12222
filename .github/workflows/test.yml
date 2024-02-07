@@ -11,7 +11,7 @@ env:
 jobs:
 
   PREP_WORK:
-    if: ${{ github.event.inputs.condition_variables == 'prep_work' && github.event.inputs.condition_variables == 'refresh' }}
+    if: ${{ github.event.inputs.condition_variables == 'prep_work' || github.event.inputs.condition_variables == 'refresh' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
