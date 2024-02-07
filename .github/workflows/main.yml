@@ -182,7 +182,7 @@ jobs:
           echo 'hello'
   # 2. - Kill Export/import jobs on target server(Disable Crontab)
   KILL_JOBS:
-    needs:[GET_DETAILS_FROM_AZURE, DISABLE_MONITOR_AND_STOP_APP, RUN_SCRIPT_OUT]
+    needs: [GET_DETAILS_FROM_AZURE, DISABLE_MONITOR_AND_STOP_APP, RUN_SCRIPT_OUT]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
