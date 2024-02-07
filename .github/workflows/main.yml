@@ -132,7 +132,7 @@ jobs:
         run: |
           echo 'hello'
   PREP_WORK:
-    needs: [GET_DETAILS_FROM_AZURE, GET_APP_SERVER_DETAILS_AZURE]
+    needs: [GET_DETAILS_FROM_AZURE, GET_APP_SERVER_DETAILS_AZURE,IF_APP_SERVER_FAILS]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
