@@ -100,7 +100,7 @@ jobs:
         run: |
           echo 'hello'
   Validate_DB_VM_Authentication:
-    needs: [GET_DETAILS_FROM_AZURE]
+    needs: [GET_DETAILS_FROM_AZURE,IF_VALIDATIONS_FAILS]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -132,22 +132,6 @@ jobs:
         run: |
           echo 'hello'
   PREP_WORK:
-    needs: [GET_DETAILS_FROM_AZURE, GET_APP_SERVER_DETAILS_AZURE,IF_APP_SERVER_FAILS]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: test
-        run: |
-          echo 'hello'
-  FAILED_PREPWORK:
-    runs-on: ubuntu-latest
-    needs: [PREP_WORK]
-    steps:
-      - uses: actions/checkout@v3
-      - name: test
-        run: |
-          echo 'hello'
-  Validate_VM_Authentication:    
     needs: [GET_DETAILS_FROM_AZURE, GET_APP_SERVER_DETAILS_AZURE]
     runs-on: ubuntu-latest
     steps:
@@ -155,6 +139,7 @@ jobs:
       - name: test
         run: |
           echo 'hello'
+
   DISABLE_MONITOR_AND_STOP_APP:
     runs-on: ubuntu-latest
     needs: [Validate_VM_Authentication, GET_DETAILS_FROM_AZURE, GET_APP_SERVER_DETAILS_AZURE]
