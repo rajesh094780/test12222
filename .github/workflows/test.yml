@@ -10,6 +10,7 @@ env:
 
 jobs:
   STOP_APP_Services:
+    if: ${{ env.condition_variable == 'Stop'}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
