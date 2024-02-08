@@ -164,6 +164,15 @@ jobs:
       - name: test
         run: |
           echo 'hello'
+      - name: Updating into AWX
+        if: ${{ env.condition_variables == 'disable' }}
+        run: |
+          echo 'Uppdating the status int AWX'
+      - name: Failed Remaining Step
+        if: ${{ env.condition_variables == 'disable' }}
+        shell: pwsh
+        run: |
+          throw "Exiting from pipeline"
   STOP_APP_Services:
     runs-on: ubuntu-latest
     needs: [GET_DETAILS_FROM_AZURE, DISABLE_MONITOR_AND_STOP_APP, GET_APP_SERVER_DETAILS_AZURE,]
